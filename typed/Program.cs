@@ -1,5 +1,4 @@
-﻿using DotImaging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -25,8 +24,9 @@ namespace typed
 
             typly.GenerateTyply(arrayOfSentences);
 
-            //typly.MakeVideo(10);
-            typly.MakeGif();
+            typly.MakeVideo(10);
+
+            typly.DeleteAllImages();
 
             Console.ReadLine();
         }

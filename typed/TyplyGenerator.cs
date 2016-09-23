@@ -239,7 +239,7 @@ namespace typed
 
             writer.Open(_path + "\\typly.mp4", _width, _height, framesPerSecond, VideoCodec.MPEG4, 1000000);
 
-            var images = GetSentences();
+            var images = GetSentences().ToList();
 
             Sentences currentSentence = null;
             foreach (var item in images)
@@ -248,14 +248,14 @@ namespace typed
                 {
                     foreach (var reversedImage in currentSentence.SentenceFile.Reverse())
                     {
-                        writer.WriteVideoFrame(new Bitmap(reversedImage.FullName));
+                        writer.WriteVideoFrame(LoadImageToMemory(reversedImage.FullName));
                     }
 
                 }
 
                 foreach (var image in item.SentenceFile)
                 {
-                    writer.WriteVideoFrame(new Bitmap(image.FullName));
+                    writer.WriteVideoFrame(LoadImageToMemory(image.FullName));
                 }
 
                 SetCursorBlink(writer, item, 2);
@@ -281,15 +281,12 @@ namespace typed
 
             for (int i = 0; i < interations; i++)
             {
-                var emptyCursorFrame = new Bitmap(emptyCursor.FullName);
-                writer.WriteVideoFrame(emptyCursorFrame);
-                writer.WriteVideoFrame(emptyCursorFrame);
+                writer.WriteVideoFrame(LoadImageToMemory(emptyCursor.FullName));
+                writer.WriteVideoFrame(LoadImageToMemory(emptyCursor.FullName));
 
-                var fullCursorFrame = new Bitmap(fullCursor.FullName);
-                writer.WriteVideoFrame(fullCursorFrame);
-                writer.WriteVideoFrame(fullCursorFrame);
+                writer.WriteVideoFrame(LoadImageToMemory(fullCursor.FullName));
+                writer.WriteVideoFrame(LoadImageToMemory(fullCursor.FullName));
             }
-
         }
 
         /// <summary>
@@ -316,11 +313,30 @@ namespace typed
 
         }
 
+        public void DeleteAllImages()
+        {
+            var di = new DirectoryInfo(_path);
+            var images = di.GetFiles().Where(c => c.Extension == ".png").ToList();
+            foreach (var item in images)
+            {
+                File.Delete(item.FullName);
+            }
+        }
+
         private string CleanText(string text)
         {
             var cleaned = text.Replace("\n", "").Replace("\t", "").Replace("\r", "");
 
             return cleaned;
+        }
+
+        private Bitmap LoadImageToMemory(string imagePath)
+        {
+            using (StreamReader streamReader = new StreamReader(imagePath))
+            {
+                Bitmap tmpBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
+                return tmpBitmap;
+            }
         }
     }
 }

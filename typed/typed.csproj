@@ -50,14 +50,6 @@
     <Reference Include="AForge.Video.FFMPEG">
       <HintPath>..\..\..\..\Examples\VideoWriter\VideoWriter\bin\x86\Debug\AForge.Video.FFMPEG.dll</HintPath>
     </Reference>
-    <Reference Include="DotImaging.GenericImage, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotImaging.GenericImage.4.8.2\lib\net45\DotImaging.GenericImage.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DotImaging.Primitives2D, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotImaging.Primitives2D.4.8.2\lib\net45\DotImaging.Primitives2D.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Gif.Components">
       <HintPath>..\..\..\..\..\Downloads\Gif.Components.dll</HintPath>
     </Reference>
