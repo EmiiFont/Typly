@@ -66,15 +66,21 @@ namespace typed
             text = text + sentence[curStrPos];
             var cursor = "|";
 
-            //las character so we need to add an space
+            //last character so we need to add an space
             if (curStrPos == sentence.Length - 1)
             {
                 cursor = " |";
-                var cursorBlink = DrawText(text + cursor, _width);
-                cursorBlink.Save(string.Format(_path + "\\{0}-cursorFull.png", currentSentence), ImageFormat.Png);
 
-                var cursorBlink2 = DrawText(text, _width);
-                cursorBlink2.Save(string.Format(_path +"\\{0}-cursorEmpty.png", currentSentence), ImageFormat.Png);
+                var cursorOff = DrawText(text, _width);
+                cursorOff.Save(string.Format(_path + "\\{0}-{1}.png", currentSentence, curStrPos + 1), ImageFormat.Png);
+
+                var cursorOn = DrawText(text + cursor, _width);
+                cursorOn.Save(string.Format(_path + "\\{0}-{1}.png", currentSentence, curStrPos + 2), ImageFormat.Png);
+
+                cursorOff.Save(string.Format(_path + "\\{0}-{1}.png", currentSentence, curStrPos + 3), ImageFormat.Png);
+
+                cursorOn.Save(string.Format(_path + "\\{0}-{1}.png", currentSentence, curStrPos + 4), ImageFormat.Png);
+
             }
 
             var characterImage = DrawText(text + cursor, _width);

@@ -18,15 +18,15 @@ namespace typed
         static void Main(string[] args)
         {
             //clean strings before adding to array.
-            var arrayOfSentences = new string[] { "These are the \n default values...", "Emilio?", "Use your own!", "Have a great day!"};
+            var arrayOfSentences = new string[] { "These are the default values...", "Emilio?", "Use your own!", "Have a great day!"};
 
             var typly = new TyplyGenerator();
 
             typly.GenerateTyply(arrayOfSentences);
 
-            typly.MakeVideo(10);
+            //typly.MakeVideo(10);
 
-            typly.DeleteAllImages();
+           // typly.DeleteAllImages();
 
             Console.ReadLine();
         }
