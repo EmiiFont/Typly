@@ -9,6 +9,10 @@ Each sentence is typed out, the cursor blinks, the sentence is "deleted"
 by playing the typing frames in reverse, and the next sentence begins.
 The GIF loops forever.
 
+## Example
+
+![Typly color emoji example](docs/typly-example.gif)
+
 ## Install
 
 ```sh
