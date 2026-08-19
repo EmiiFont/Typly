@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Typly</title>
+  <script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@main/library/datastar.js"></script>
+  <style>
+    :root { color-scheme: dark; font: 16px system-ui, sans-serif; background: #101218; color: #f5f7fa; }
+    body { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
+    textarea { box-sizing: border-box; width: 100%; min-height: 220px; padding: 16px; border: 1px solid #3b4252; border-radius: 12px; background: #1b1f2a; color: inherit; font: inherit; resize: vertical; }
+    button { margin-top: 12px; padding: 11px 18px; border: 0; border-radius: 8px; background: #65d1a5; color: #07110d; font-weight: 700; cursor: pointer; }
+    .error { color: #ff8f8f; } .valid { color: #8de4bd; }
+  </style>
+</head>
+<body data-signals='{"sentences":["Welcome to Typly 🌍"],"width":1280,"height":720,"fontSize":72,"fps":12,"foreground":"#000000","background":"#FFFFFF","cursor":"|","blinks":3,"emoji":"color"}'>
+  <h1>Typly</h1>
+  <p>Create a typing animation with color emoji.</p>
+  <textarea data-bind="sentences.0" aria-label="Text"></textarea>
+  <div>
+    <button data-on:click="@post('/api/spec/validate')">Validate</button>
+    <button data-on:click="@post('/api/render/gif')">Export GIF</button>
+    <button data-on:click="@post('/api/render/mp4')">Export MP4</button>
+  </div>
+  <p id="validation">Ready.</p>
+</body>
+</html>
